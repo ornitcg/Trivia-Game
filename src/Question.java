@@ -1,16 +1,10 @@
 public class Question {
     private String _question;
     private String _answers[] = new String[4];
-
-    public boolean isUsed() {
-        return _isUsed;
-    }
-
-    public void set_isUsed(boolean _isUsed) {
-        this._isUsed = _isUsed;
-    }
-
     private boolean _isUsed;
+
+
+
     private int _correctIndex;
 
 
@@ -69,5 +63,20 @@ public class Question {
 
     public String get_question() {
         return _question;
+    }
+
+
+    public boolean isUsed() {
+        return _isUsed;
+    }
+
+
+
+    public void set_isUsed(boolean _isUsed) {
+        this._isUsed = _isUsed;
+    }
+
+    public int get_correctIndex() {
+        return _correctIndex;
     }
 }

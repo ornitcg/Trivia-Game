@@ -60,6 +60,10 @@ public class Questionnaire {
     } // end print
 
 
-
-
+    public void reset() {
+        for (Question q:_questionnaire){
+            q.set_isUsed(false);
+            System.out.println("q has been reset to false");
+        }
+    }
 }

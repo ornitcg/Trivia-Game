@@ -12,8 +12,10 @@ public class TriviaTester {
 
 
         JFrame triviaFrame = new JFrame();
-        triviaFrame.setSize(1000,1000);
+        triviaFrame.setSize(1200,700);
+        triviaFrame.setResizable(false);
         MainTriviaPanel triviaPanel = new MainTriviaPanel(filePath);
+
 
 
         triviaFrame.add(triviaPanel);
