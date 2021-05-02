@@ -8,7 +8,14 @@ public class Question {
     private int _correctIndex;
 
 
-
+    /**
+     * Constructor
+     * @param q
+     * @param ans1
+     * @param ans2
+     * @param ans3
+     * @param ans4
+     */
     public Question(String q, String ans1, String ans2, String ans3, String ans4){
         _question = q;
         _isUsed = false;
@@ -26,20 +33,31 @@ public class Question {
 
     }
 
+    /**
+     * arranges the answers at their defined display order, in the class variable
+     * @param answers - the initial order of answere as given in file, assuming the first one is the correct answer
+     * @param displayOrder - the order in which the answers will be displayed on screen
+     */
     private void setAnswersAtDisplayOrder(String[] answers, int[] displayOrder) {
         for(int i=0 ; i < 4 ; i++){
             _answers[i] = answers[displayOrder[i]];
             if (displayOrder[i] == 0)
                 _correctIndex = i;
-
         }
     }
 
+    /**
+     * Used for debugging
+     * @return
+     */
     public String toString(){
         return _question + "\n" + _answers[0] + "\n" +_answers[1]+"\n"+_answers[2] +"\n" +_answers[3];
-
     }
 
+    /**
+     * Defines the order of answers on display of each question
+     * @param displayOrder - array of display order. to fill in with indices of answers
+     */
     private void set_displayOrder(int[] displayOrder) {
         int rand = (int)(Math.random() * 1000 ) % 4;
         int displayIndex;
@@ -49,17 +67,16 @@ public class Question {
         }
     }
 
-    public String displayOrderToString(int[] displayOrder){
-        String display = "";
-        for (int i =0 ; i<4 ; i++){
-            display = display + displayOrder[i] + ", ";
-        }
-        return  display;
-    }
 
+    /**
+     * Gets the String of an answer at a specific index of answers array
+     * @param ind
+     * @return
+     */
     public String get_answerAtIndex(int ind) {
         return _answers[ind];
     }
+
 
     public String get_question() {
         return _question;
@@ -69,7 +86,6 @@ public class Question {
     public boolean isUsed() {
         return _isUsed;
     }
-
 
 
     public void set_isUsed(boolean _isUsed) {

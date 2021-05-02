@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Questionnaire {
     private ArrayList <Question> _questionnaire = new ArrayList<Question>();
+    private int _unUsedQuestionsCounter ;
 
 
     public Questionnaire(String filePath) throws FileNotFoundException {
@@ -28,42 +29,43 @@ public class Questionnaire {
         }
         catch (NoSuchElementException e){
             // Do nothing
+            // for sometimes the last empty line is taken as question.
+            // assuming valid input file
         }
+        _unUsedQuestionsCounter = _questionnaire.size();
 
     } //end constructor
 
 
-
-
+    /**
+     * Chooses a question randomly, out of the unused questions left.
+     * @return
+     */
     public Question getRandomQuestion() {
         int size = _questionnaire.size();
         int randIndex;
         Question randQuestion;
-        while (true) {
+        while (_unUsedQuestionsCounter>0) {
             randIndex = (int) (Math.random() * 1234) % size;
             randQuestion = _questionnaire.get(randIndex);
             if (!randQuestion.isUsed()) {
                 randQuestion.set_isUsed(true);
+                _unUsedQuestionsCounter--;
                 return randQuestion;
             }
         }// end while
-
+        return null;
 
     }// end getRandomQuestion
 
 
-    public void print() {
-        int size = _questionnaire.size();
-        for (int i = 0; i < size; i++) {
-            System.out.println(_questionnaire.get(i).toString());
-        }
-    } // end print
-
-
+    /**
+     * Sets the questionnaire as not used, for a new game
+     */
     public void reset() {
         for (Question q:_questionnaire){
             q.set_isUsed(false);
-            System.out.println("q has been reset to false");
+            _unUsedQuestionsCounter = _questionnaire.size();
         }
     }
 }
